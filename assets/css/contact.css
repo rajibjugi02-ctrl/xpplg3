@@ -1,0 +1,165 @@
+/* =============================================
+   CONTACT PAGE — Premium Social Cards
+   ============================================= */
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+/* Base card */
+.contact-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 2.5rem 2rem;
+    border-radius: var(--radius-lg);
+    text-decoration: none;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 8px 24px -6px rgba(0,0,0,0.2);
+}
+
+/* Animated mesh background inside card */
+.contact-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at top left, rgba(255,255,255,0.2) 0%, transparent 60%);
+    transition: opacity 0.3s ease;
+}
+
+.contact-card::after {
+    content: '';
+    position: absolute;
+    bottom: -40px; right: -40px;
+    width: 120px; height: 120px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.08);
+    transition: all 0.4s ease;
+}
+
+.contact-card:hover::after {
+    transform: scale(2);
+    opacity: 0.6;
+}
+
+.contact-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 50px -10px rgba(0,0,0,0.3);
+}
+
+/* Instagram gradient */
+.contact-ig {
+    background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
+}
+
+/* WhatsApp gradient */
+.contact-wa {
+    background: linear-gradient(135deg, #25d366, #128c7e);
+}
+
+/* Email gradient */
+.contact-email {
+    background: linear-gradient(135deg, #2563eb, #6366f1);
+}
+
+/* Icon */
+.contact-icon {
+    width: 72px;
+    height: 72px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(8px);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+    z-index: 1;
+    transition: all 0.35s ease;
+    border: 1.5px solid rgba(255,255,255,0.3);
+}
+
+.contact-card:hover .contact-icon {
+    transform: scale(1.15) rotate(10deg);
+    background: rgba(255,255,255,0.3);
+}
+
+/* Info text */
+.contact-info {
+    position: relative;
+    z-index: 1;
+}
+
+.contact-info h3 {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 0.4rem;
+    letter-spacing: -0.02em;
+}
+
+.contact-info p {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 1rem;
+    word-break: break-all;
+}
+
+.contact-info span {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: rgba(255,255,255,0.9);
+    background: rgba(255,255,255,0.15);
+    padding: 0.4rem 1rem;
+    border-radius: 999px;
+    transition: all 0.25s ease;
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+.contact-card:hover .contact-info span {
+    background: rgba(255,255,255,0.25);
+    gap: 0.75rem;
+}
+
+/* Info box at bottom */
+.contact-info-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 1.25rem 2rem;
+    background: linear-gradient(135deg, var(--primary-light), #f5f3ff);
+    border: 1px solid rgba(37, 99, 235, 0.12);
+    border-radius: var(--radius-lg);
+    color: var(--primary);
+    font-size: 0.9rem;
+    font-weight: 600;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.contact-info-box i {
+    font-size: 1.25rem;
+    flex-shrink: 0;
+}
+
+/* ---- RESPONSIVE ---- */
+@media (max-width: 860px) {
+    .contact-grid {
+        grid-template-columns: 1fr;
+        max-width: 440px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}

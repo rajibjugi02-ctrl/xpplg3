@@ -1,0 +1,221 @@
+/* =========================================
+   STRUCTURE PAGE CSS - MODERN & DYNAMIC
+   ========================================= */
+
+.org-chart {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 5rem;
+    width: 100%;
+    position: relative;
+}
+
+/* Background decorative elements to make it less empty/rigid */
+.org-chart::before {
+    content: '';
+    position: absolute;
+    top: 10%; left: 10%;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(59,130,246,0.1) 0%, transparent 70%);
+    border-radius: 50%;
+    z-index: -1;
+}
+.org-chart::after {
+    content: '';
+    position: absolute;
+    bottom: 20%; right: 10%;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(139,92,246,0.08) 0%, transparent 70%);
+    border-radius: 50%;
+    z-index: -1;
+}
+
+/* Connectors - soft dashed gradients */
+.org-connector-v {
+    width: 2px;
+    height: 45px;
+    background-image: linear-gradient(to bottom, #93c5fd 40%, transparent 20%);
+    background-size: 100% 12px;
+    margin: 0 auto;
+    opacity: 0.6;
+}
+
+.org-row {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    position: relative;
+    z-index: 2;
+}
+
+.org-row-multi {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    gap: 1.5rem;
+    position: relative;
+    flex-wrap: wrap;
+    width: 100%;
+    max-width: 1000px;
+    padding: 0 1rem;
+    z-index: 2;
+}
+
+/* Horizontal line replacing the rigid one with a soft curved or dashed line */
+.org-row-multi::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 75%;
+    height: 2px;
+    background-image: linear-gradient(to right, #93c5fd 40%, transparent 20%);
+    background-size: 15px 100%;
+    opacity: 0.6;
+}
+
+.org-node-wrapper {
+    position: relative;
+    padding-top: 45px;
+    flex-shrink: 0;
+    animation: fadeInUp 0.8s ease-out backwards;
+}
+
+/* Stagger animations for nodes */
+.org-node-wrapper:nth-child(2) { animation-delay: 0.1s; }
+.org-node-wrapper:nth-child(3) { animation-delay: 0.2s; }
+.org-node-wrapper:nth-child(4) { animation-delay: 0.3s; }
+.org-node-wrapper:nth-child(5) { animation-delay: 0.4s; }
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.org-node-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 45px;
+    background-image: linear-gradient(to bottom, #93c5fd 40%, transparent 20%);
+    background-size: 100% 12px;
+    opacity: 0.6;
+}
+
+.org-row .org-node-wrapper { padding-top: 0; }
+.org-row .org-node-wrapper::before { display: none; }
+
+/* The Card - Glassmorphism & Soft feel */
+.org-card {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 1.5rem;
+    padding: 1.75rem 1.25rem;
+    width: 200px;
+    text-align: center;
+    box-shadow: 0 10px 30px -10px rgba(15, 23, 42, 0.08);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Bouncy hover */
+}
+
+.org-card:hover {
+    transform: translateY(-8px) scale(1.03);
+    box-shadow: 0 20px 40px -10px rgba(37,99,235,0.15);
+    background: #ffffff;
+    border-color: #bfdbfe;
+}
+
+.org-card-primary {
+    background: linear-gradient(135deg, #ffffff, #eff6ff);
+    border: 1.5px solid #93c5fd;
+    box-shadow: 0 15px 35px -10px rgba(37,99,235,0.2);
+}
+
+.org-photo {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 auto 1rem;
+    display: block;
+    border: 3px solid #ffffff;
+    box-shadow: 0 8px 16px -4px rgba(37,99,235,0.2);
+    transition: transform 0.3s ease;
+}
+
+.org-card:hover .org-photo {
+    transform: scale(1.1) rotate(3deg);
+}
+
+.org-card h4 {
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: var(--dark);
+    margin-bottom: 0.4rem;
+    line-height: 1.3;
+}
+
+.org-role {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text);
+    background: #f1f5f9;
+    display: inline-block;
+    padding: 0.2rem 0.6rem;
+    border-radius: 999px;
+}
+
+.org-role.text-primary { 
+    color: var(--primary); 
+    background: #eff6ff;
+}
+
+.org-desc {
+    font-size: 0.7rem;
+    color: #64748b;
+    margin-top: 0.75rem;
+    line-height: 1.5;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 860px) {
+    .org-card { width: 170px; padding: 1.5rem 1rem; }
+    .org-row-multi { gap: 1rem; }
+}
+
+@media (max-width: 640px) {
+    .org-chart { padding: 0 1rem 3rem; }
+    .org-row, .org-row-multi { flex-direction: column; align-items: center; gap: 1rem; }
+    .org-row-multi::before { display: none; }
+    .org-node-wrapper { padding-top: 0; width: 100%; display: flex; justify-content: center; }
+    .org-node-wrapper::before { display: none; }
+    .org-connector-v { height: 20px; background-size: 100% 8px; }
+
+    .org-card {
+        width: 100%;
+        max-width: 340px;
+        display: flex;
+        align-items: center;
+        gap: 1.25rem;
+        text-align: left;
+        padding: 1rem 1.25rem;
+        border-radius: 1.25rem;
+    }
+
+    .org-photo { width: 56px; height: 56px; margin: 0; flex-shrink: 0; }
+    .org-card h4 { font-size: 1rem; margin-bottom: 0.3rem; }
+    .org-card:hover .org-photo { transform: scale(1.05) rotate(0); }
+    
+    .org-row-multi .org-node-wrapper + .org-node-wrapper {
+        margin-top: 0;
+    }
+}

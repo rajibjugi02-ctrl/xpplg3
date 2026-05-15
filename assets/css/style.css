@@ -1,0 +1,467 @@
+/* =============================================
+   PPLG 3 ENGINEERING — GLOBAL STYLES (PREMIUM)
+   ============================================= */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Fira+Code:wght@500&display=swap');
+
+:root {
+    --primary:       #2563eb;
+    --primary-hover: #1d4ed8;
+    --primary-light: #eff6ff;
+    --secondary:     #0ea5e9;
+    --accent:        #8b5cf6;
+    --dark:          #0f172a;
+    --dark-2:        #1e293b;
+    --text:          #475569;
+    --text-light:    #94a3b8;
+    --light-bg:      #f8fafc;
+    --white:         #ffffff;
+    --border:        #e2e8f0;
+    --border-light:  #f1f5f9;
+    --font-sans:     'Plus Jakarta Sans', 'Inter', sans-serif;
+    --font-mono:     'Fira Code', monospace;
+    --radius:        0.75rem;
+    --radius-lg:     1.25rem;
+    --shadow-sm:     0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+    --shadow-md:     0 4px 16px -2px rgba(0,0,0,0.07), 0 2px 8px -2px rgba(0,0,0,0.04);
+    --shadow-lg:     0 20px 40px -8px rgba(0,0,0,0.1), 0 8px 20px -4px rgba(0,0,0,0.06);
+    --shadow-blue:   0 8px 24px -4px rgba(37,99,235,0.25);
+    --transition:    all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* === SMOOTH SCROLLING === */
+html {
+    scroll-behavior: smooth;
+}
+
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-sans);
+    color: var(--text);
+    background: var(--light-bg);
+    line-height: 1.65;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: var(--transition);
+}
+
+/* ===================================
+   NAVBAR — Glass Morphism + Scroll
+   =================================== */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5%;
+    height: 68px;
+    background: rgba(255, 255, 255, 0.82);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border-bottom: 1px solid rgba(226, 232, 240, 0.6);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    gap: 1rem;
+    transition: all 0.4s ease;
+}
+
+.navbar.scrolled {
+    height: 58px;
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 4px 24px -4px rgba(0,0,0,0.08);
+}
+
+.logo {
+    font-weight: 900;
+    font-size: 1.15rem;
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    white-space: nowrap;
+    flex-shrink: 0;
+    text-decoration: none;
+    letter-spacing: -0.01em;
+    transition: var(--transition);
+}
+
+.logo:hover {
+    opacity: 0.85;
+    transform: translateY(-1px);
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    flex: 1;
+    justify-content: center;
+}
+
+.nav-links a {
+    font-weight: 600;
+    font-size: 0.875rem;
+    color: var(--text);
+    white-space: nowrap;
+    position: relative;
+    padding: 0.45rem 0.85rem;
+    border-radius: 0.5rem;
+    transition: var(--transition);
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 4px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    border-radius: 1px;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+    transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: var(--primary);
+    background: rgba(37, 99, 235, 0.06);
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+    width: 60%;
+}
+
+.navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-shrink: 0;
+}
+
+/* ===================================
+   HAMBURGER MENU
+   =================================== */
+.nav-hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    background: none;
+    border: 1.5px solid var(--border);
+    border-radius: 0.5rem;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    padding: 0;
+    transition: var(--transition);
+}
+
+.nav-hamburger:hover {
+    background: var(--primary-light);
+    border-color: var(--primary);
+}
+
+.nav-hamburger span {
+    display: block;
+    width: 18px;
+    height: 2px;
+    background: var(--dark);
+    border-radius: 2px;
+    transition: all 0.3s;
+}
+
+/* Mobile Drawer */
+.nav-drawer {
+    display: none;
+    position: fixed;
+    top: 68px;
+    left: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.97);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    padding: 1rem 5% 1.5rem;
+    flex-direction: column;
+    gap: 0.25rem;
+    z-index: 999;
+    box-shadow: 0 16px 40px rgba(0,0,0,0.08);
+    animation: slideDown 0.25s ease;
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.nav-drawer.open { display: flex; }
+
+.nav-drawer a {
+    padding: 0.75rem 1rem;
+    border-radius: 0.65rem;
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--text);
+    transition: var(--transition);
+}
+
+.nav-drawer a:hover,
+.nav-drawer a.active {
+    background: var(--primary-light);
+    color: var(--primary);
+    padding-left: 1.25rem;
+}
+
+.nav-drawer .btn {
+    margin-top: 0.75rem;
+    width: 100%;
+    justify-content: center;
+}
+
+/* ===================================
+   BUTTONS — Premium
+   =================================== */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1.2rem;
+    border-radius: var(--radius);
+    font-weight: 700;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: var(--transition);
+    white-space: nowrap;
+    text-decoration: none;
+    border: none;
+    position: relative;
+    overflow: hidden;
+    letter-spacing: -0.01em;
+}
+
+/* Shimmer effect on hover */
+.btn::after {
+    content: '';
+    position: absolute;
+    top: 0; left: -75%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+    transform: skewX(-20deg);
+    transition: left 0.5s ease;
+}
+
+.btn:hover::after {
+    left: 125%;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary), var(--primary-hover));
+    color: #fff;
+    box-shadow: var(--shadow-blue);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 28px -4px rgba(37,99,235,0.4);
+}
+
+.btn-primary:active {
+    transform: translateY(-1px);
+}
+
+.btn-outline {
+    background: var(--white);
+    color: var(--dark);
+    border: 1.5px solid var(--border);
+}
+
+.btn-outline:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+    background: var(--primary-light);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+}
+
+.btn-sm {
+    padding: 0.4rem 0.85rem;
+    font-size: 0.8rem;
+    border-radius: 0.5rem;
+}
+
+/* ===================================
+   CONTAINER & PAGE HEADERS
+   =================================== */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 4rem 5% 6rem;
+}
+
+.page-header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.page-title {
+    font-size: 2.75rem;
+    font-weight: 900;
+    color: var(--dark);
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.04em;
+    line-height: 1.1;
+}
+
+.page-title span {
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.page-subtitle {
+    font-size: 1.1rem;
+    color: var(--text);
+    max-width: 580px;
+    margin: 0 auto;
+    line-height: 1.7;
+}
+
+/* Section label chip */
+.section-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--primary-light);
+    border: 1px solid rgba(37, 99, 235, 0.15);
+    color: var(--primary);
+    padding: 0.35rem 1rem;
+    border-radius: 999px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 1rem;
+}
+
+/* ===================================
+   FOOTER — Premium Dark
+   =================================== */
+.footer-expanded {
+    background: var(--dark);
+    color: rgba(255,255,255,0.6);
+    padding: 2.5rem 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.footer-expanded::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(37,99,235,0.5), rgba(139,92,246,0.5), transparent);
+}
+
+.footer-left h3 {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 0.3rem;
+    letter-spacing: -0.02em;
+}
+
+.footer-left p {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.45);
+}
+
+.footer-right {
+    display: flex;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.footer-right a {
+    color: rgba(255,255,255,0.45);
+    font-weight: 500;
+    font-size: 0.875rem;
+    transition: var(--transition);
+}
+
+.footer-right a:hover {
+    color: #fff;
+    transform: translateY(-1px);
+}
+
+/* ===================================
+   EMPTY STATES
+   =================================== */
+.empty-state {
+    text-align: center;
+    padding: 6rem 2rem;
+    color: var(--text);
+}
+
+.empty-icon {
+    font-size: 4rem;
+    color: #cbd5e1;
+    margin-bottom: 1.5rem;
+    animation: floatGently 3s ease-in-out infinite;
+}
+
+@keyframes floatGently {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.empty-state h3 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--dark);
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.02em;
+}
+
+/* ===================================
+   RESPONSIVE
+   =================================== */
+@media (max-width: 1024px) {
+    .nav-links { gap: 0; }
+}
+
+@media (max-width: 860px) {
+    .nav-links { display: none; }
+    .navbar-right .btn { display: none; }
+    .nav-hamburger { display: flex; }
+    .footer-expanded {
+        flex-direction: column;
+        text-align: center;
+        gap: 1.5rem;
+        padding: 2rem 5%;
+    }
+}
+
+@media (max-width: 640px) {
+    .container { padding: 2.5rem 4% 4rem; }
+    .page-title { font-size: 2.1rem; }
+    .page-subtitle { font-size: 0.95rem; }
+}
