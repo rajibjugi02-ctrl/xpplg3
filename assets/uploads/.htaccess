@@ -1,0 +1,8 @@
+# Block direct access to uploads folder (no directory listing)
+Options -Indexes
+
+# Only allow image files
+<FilesMatch "\.(php|php3|php4|php5|phtml|pl|py|jsp|asp|htm|html|shtml|sh|cgi)$">
+    Order Deny,Allow
+    Deny from all
+</FilesMatch>
