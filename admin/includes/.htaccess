@@ -1,0 +1,9 @@
+# Protect admin session — redirect if not logged in is handled by PHP
+# Block directory listing
+Options -Indexes
+
+# Prevent direct access to includes folder
+<FilesMatch "^(auth|db)\.php$">
+    Order Deny,Allow
+    Deny from all
+</FilesMatch>
